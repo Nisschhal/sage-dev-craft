@@ -6,7 +6,7 @@ import tubeImage from "@/assets/tube.png"
 export const ProductShowcase = () => {
   return (
     <section className="bg-gradient-to-b from-[#fff] to-[#d2dcff] py-24 overflow-x-clip">
-      <div className="container mx-auto">
+      <div className="">
         <div className="section-header">
           <div className="flex justify-center">
             <h2 className="tag">Boost Your Sales with Modern Solutions</h2>
@@ -21,8 +21,8 @@ export const ProductShowcase = () => {
             future-ready solutions tailored for your success.
           </p>
         </div>
-        <div className="relative">
-          <Image src={productImage} alt="product image" className="mt-10" />
+        <div className="relative mx-auto md:w-[80%]">
+          <Image src={productImage} alt="product image" className="mt-10 " />
           <Image
             src={pyramidImage}
             alt="product image"
