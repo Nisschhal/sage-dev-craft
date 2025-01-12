@@ -12,6 +12,9 @@
   .btn-text {
     @apply text-black bg-transparent border border-transparent hover:border-black duration-200;
   }
+  .logo-ticker-img {
+    @apply h-8 w-auto;
+  }
 }
 
 :root {
