@@ -13,12 +13,10 @@ export const Hero = () => {
           {/* Text  */}
           <div className="md:w-[478px]">
             {/* Small Heading */}
-            <p className="text-sm inline-flex border border-[#222]/10 px-3 py-1 rounded-lg tracking-tight">
-              Your Business, Digitized
-            </p>
+            <p className="tag">Your Business, Digitized</p>
 
             {/* Main Heading */}
-            <h1 className="text-5xl md:text-6xl font-bold tracking-tighter bg-gradient-to-b from-black to-[#001e80] text-transparent bg-clip-text mt-6 ">
+            <h1 className="text-5xl md:text-6xl gradient-text mt-6 ">
               Unlock Growth with Digital Solutions
             </h1>
 

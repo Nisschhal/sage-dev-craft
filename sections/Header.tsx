@@ -26,7 +26,7 @@ export const Header = () => {
         <div className="flex items-center gap-3">
           <Image src={Logo} alt="logo" height={40} width={40} />
           <span className="text-lg font-semibold text-black/80 hidden sm:block">
-            SaaSify
+            ../SageCraftDev
           </span>
         </div>
 

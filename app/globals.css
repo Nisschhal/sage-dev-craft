@@ -15,6 +15,12 @@
   .logo-ticker-img {
     @apply h-8 w-auto;
   }
+  .tag {
+    @apply text-sm inline-flex border border-[#222]/10 px-3 py-1 rounded-lg tracking-tight;
+  }
+  .gradient-text {
+    @apply font-bold tracking-tighter bg-gradient-to-b from-black to-[#001e80] text-transparent bg-clip-text;
+  }
 }
 
 :root {
