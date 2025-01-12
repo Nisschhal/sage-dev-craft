@@ -27,8 +27,12 @@
   .section-description {
     @apply text-center text-[22px] leading-[30px] tracking-tight text-[#010d3e];
   }
-  .section-heading {
+  .section-header {
     @apply max-w-[540px] mx-auto;
+  }
+
+  .card {
+    @apply p-10 border border-[#222222]/10 rounded-3xl shadow-[0_7px_14px_#d2d2d2] max-w-xs w-full;
   }
 }
 

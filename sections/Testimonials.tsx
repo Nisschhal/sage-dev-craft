@@ -1,14 +1,23 @@
-import avatar1 from "@/assets/avatar-1.png";
-import avatar2 from "@/assets/avatar-2.png";
-import avatar3 from "@/assets/avatar-3.png";
-import avatar4 from "@/assets/avatar-4.png";
-import avatar5 from "@/assets/avatar-5.png";
-import avatar6 from "@/assets/avatar-6.png";
-import avatar7 from "@/assets/avatar-7.png";
-import avatar8 from "@/assets/avatar-8.png";
-import avatar9 from "@/assets/avatar-9.png";
+import avatar1 from "@/assets/avatar-1.png"
+import avatar2 from "@/assets/avatar-2.png"
+import avatar3 from "@/assets/avatar-3.png"
+import avatar4 from "@/assets/avatar-4.png"
+import avatar5 from "@/assets/avatar-5.png"
+import avatar6 from "@/assets/avatar-6.png"
+import avatar7 from "@/assets/avatar-7.png"
+import avatar8 from "@/assets/avatar-8.png"
+import avatar9 from "@/assets/avatar-9.png"
+import Image from "next/image"
+import { twMerge } from "tailwind-merge"
 
-const testimonials = [
+interface Testimonial {
+  text: string
+  imageSrc: string
+  name: string
+  username: string
+}
+
+const testimonials: Testimonial[] = [
   {
     text: "As a seasoned designer always on the lookout for innovative tools, Framer.com instantly grabbed my attention.",
     imageSrc: avatar1.src,
@@ -63,8 +72,87 @@ const testimonials = [
     name: "Casey Harper",
     username: "@casey09",
   },
-];
+]
+
+// 3 columns
+const firstColumn: Testimonial[] = testimonials.slice(0, 3)
+const secondColmun: Testimonial[] = testimonials.slice(3, 6)
+const thirdColumn: Testimonial[] = testimonials.slice(6, 9)
+
+export const TestimonialColumn = ({
+  testimonials,
+  classNames,
+}: {
+  testimonials: Testimonial[]
+  classNames?: string
+}) => {
+  return (
+    <div
+      className={twMerge(
+        "flex flex-col gap-6 mt-10 [mask-image:linear-gradient(to_bottom,transparent,black_25%,black_75%,transparent)]",
+        classNames
+      )}
+    >
+      {testimonials.map((testimonial, index) => (
+        <div key={index} className="card">
+          <div>
+            <p>{testimonial.text}</p>
+          </div>
+          <div className="flex items-center gap-2 mt-5">
+            <Image
+              src={testimonial.imageSrc}
+              alt="user"
+              height={40}
+              width={40}
+            />
+            <div className="flex flex-col">
+              <span className="font-medium leading-5 tracking-tight">
+                {testimonial.name}
+              </span>
+              <span className="leading-5 tracking-tighter">
+                {testimonial.username}
+              </span>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
 
 export const Testimonials = () => {
-  return null;
-};
+  return (
+    <section>
+      <div className="container mx-auto">
+        <div className="section-header">
+          <div className="flex justify-center">
+            <div className="tag">Testimonials</div>
+          </div>
+          <h2 className="section-title gradient-text mt-5">
+            What our users say
+          </h2>
+          <p className="section-description mt-5">
+            From intuitive design to powerful features, our app has become an
+            essential tool for users around the world
+          </p>
+        </div>
+
+        {/* Testimonials */}
+        <div className="flex  justify-center gap-6">
+          {/*Column 1:mask-image */}
+          <TestimonialColumn testimonials={firstColumn} />
+          {/*Column 2:mask-image */}
+          <TestimonialColumn
+            testimonials={secondColmun}
+            classNames="hidden md:flex"
+          />
+          {/*Column 3:mask-image */}
+          <TestimonialColumn
+            testimonials={thirdColumn}
+            classNames="hidden md:flex"
+          />
+        </div>
+      </div>
+    </section>
+  )
+}
