@@ -6,15 +6,15 @@ import tubeImage from "@/assets/tube.png"
 export const ProductShowcase = () => {
   return (
     <section className="bg-gradient-to-b from-[#fff] to-[#d2dcff] py-24 overflow-x-clip">
-      <div className="container ">
-        <div className="max-w-[540px] mx-auto">
+      <div className="container mx-auto">
+        <div className="section-heading">
           <div className="flex justify-center">
             <h2 className="tag">Boost Your Sales with Modern Solutions</h2>
           </div>
-          <h2 className="text-3xl md:text-[54px] md:leading-[60px] gradient-text text-center mt-5">
+          <h2 className="section-title gradient-text mt-5">
             Unlock New Opportunities for Your Business
           </h2>
-          <p className="text-center text-[22px] leading-[30px] tracking-tight text-[#010d3e] mt-5">
+          <p className="section-description mt-5">
             Transform your business with modern tools—digitize your operations,
             streamline marketing, and effortlessly track sales with a fully
             responsive website ready in days. Stay ahead with professional,
