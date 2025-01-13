@@ -4,13 +4,7 @@ import Cylinder from "@/assets/cylinder.png"
 import Noddle from "@/assets/noodle.png"
 import { GoArrowRight } from "react-icons/go"
 import Image from "next/image"
-import {
-  motion,
-  useScroll,
-  useMotionValueEvent,
-  useMotionValue,
-  useTransform,
-} from "motion/react"
+import { motion, useScroll, useTransform } from "motion/react"
 import { useRef } from "react"
 
 export const Hero = () => {
@@ -22,11 +16,6 @@ export const Hero = () => {
   })
 
   const y = useTransform(scrollYProgress, [0, 1], [150, -150])
-
-  useMotionValueEvent(scrollYProgress, "change", (latestScrollY) =>
-    console.log({ latestScrollY })
-  )
-  useMotionValueEvent(y, "change", (latestY) => console.log({ latestY }))
 
   return (
     <section
