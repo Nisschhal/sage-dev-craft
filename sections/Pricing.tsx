@@ -1,5 +1,7 @@
+"use client"
 import { GoCheckbox } from "react-icons/go"
 import { twMerge } from "tailwind-merge"
+import { motion } from "framer-motion"
 interface PricingPlan {
   title: string
   monthlyPrice: number
@@ -95,9 +97,21 @@ export const Pricing = () => {
                 {pricing.popular === true && (
                   <div>
                     <div className="inline-flex text-sm  px-4 py-1.5 rounded-xl border border-white/20">
-                      <span className="bg-[linear-gradient(to_right,#dd7ddf,#e1cd86,#bbcb29,#71c2ef,#ebffff,#dd7ddf)] text-transparent bg-clip-text">
+                      {/* // increase the background-size to 200% to see the effect */}
+                      <motion.span
+                        className="bg-[linear-gradient(to_right,#dd7ddf,#e1cd86,#bbcb29,#71c2ef,#ebffff,#dd7ddf,#e1cd86,#bbcb29,#71c2ef,#ebffff,#dd7ddf)] [background-size:200%] text-transparent bg-clip-text"
+                        animate={{
+                          backgroundPositionX: "-100%",
+                        }}
+                        transition={{
+                          duration: 1,
+                          repeat: Infinity,
+                          repeatType: "loop",
+                          ease: "linear",
+                        }}
+                      >
                         Popular
-                      </span>
+                      </motion.span>
                     </div>
                   </div>
                 )}

@@ -1,3 +1,4 @@
+"use client"
 import avatar1 from "@/assets/avatar-1.png"
 import avatar2 from "@/assets/avatar-2.png"
 import avatar3 from "@/assets/avatar-3.png"
@@ -9,7 +10,8 @@ import avatar8 from "@/assets/avatar-8.png"
 import avatar9 from "@/assets/avatar-9.png"
 import Image from "next/image"
 import { twMerge } from "tailwind-merge"
-
+import { motion } from "framer-motion"
+import React from "react"
 interface Testimonial {
   text: string
   imageSrc: string
@@ -82,40 +84,55 @@ const thirdColumn: Testimonial[] = testimonials.slice(6, 9)
 export const TestimonialColumn = ({
   testimonials,
   classNames,
+  duration,
 }: {
   testimonials: Testimonial[]
   classNames?: string
+  duration?: number
 }) => {
   return (
-    <div
-      className={twMerge(
-        "flex flex-col gap-6 mt-10 [mask-image:linear-gradient(to_bottom,transparent,black_25%,black_75%,transparent)]",
-        classNames
-      )}
-    >
-      {testimonials.map((testimonial, index) => (
-        <div key={index} className="card">
-          <div>
-            <p>{testimonial.text}</p>
-          </div>
-          <div className="flex items-center gap-2 mt-5">
-            <Image
-              src={testimonial.imageSrc}
-              alt="user"
-              height={40}
-              width={40}
-            />
-            <div className="flex flex-col">
-              <span className="font-medium leading-5 tracking-tight">
-                {testimonial.name}
-              </span>
-              <span className="leading-5 tracking-tighter">
-                {testimonial.username}
-              </span>
-            </div>
-          </div>
-        </div>
-      ))}
+    <div className={twMerge(classNames)}>
+      <motion.div
+        className={twMerge("flex flex-col gap-6 pb-6 ")}
+        animate={{
+          translateY: "-50%",
+        }}
+        transition={{
+          duration: duration || 10,
+          repeat: Infinity,
+          repeatType: "loop",
+          ease: "linear",
+        }}
+      >
+        {/* // double the items to repeat on 50% distance which is 100% width for each, resulting looping effect */}
+        {[...new Array(2)].map((_, index) => (
+          <React.Fragment key={index}>
+            {testimonials.map((testimonial, index) => (
+              <div key={index} className="card">
+                <div>
+                  <p>{testimonial.text}</p>
+                </div>
+                <div className="flex items-center gap-2 mt-5">
+                  <Image
+                    src={testimonial.imageSrc}
+                    alt="user"
+                    height={40}
+                    width={40}
+                  />
+                  <div className="flex flex-col">
+                    <span className="font-medium leading-5 tracking-tight">
+                      {testimonial.name}
+                    </span>
+                    <span className="leading-5 tracking-tighter">
+                      {testimonial.username}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </React.Fragment>
+        ))}
+      </motion.div>
     </div>
   )
 }
@@ -138,18 +155,20 @@ export const Testimonials = () => {
         </div>
 
         {/* Testimonials */}
-        <div className="flex  justify-center gap-6">
+        <div className="flex mt-14 justify-center gap-6 [mask-image:linear-gradient(to_bottom,transparent,black_25%,black_75%,transparent)] max-h-[738px] overflow-hidden">
           {/*Column 1:mask-image */}
-          <TestimonialColumn testimonials={firstColumn} />
+          <TestimonialColumn testimonials={firstColumn} duration={16} />
           {/*Column 2:mask-image */}
           <TestimonialColumn
             testimonials={secondColmun}
-            classNames="hidden md:flex"
+            classNames="hidden md:block"
+            duration={12}
           />
           {/*Column 3:mask-image */}
           <TestimonialColumn
             testimonials={thirdColumn}
-            classNames="hidden md:flex"
+            classNames="hidden lg:block"
+            duration={19}
           />
         </div>
       </div>

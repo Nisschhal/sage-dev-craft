@@ -22,15 +22,15 @@ export const LogoTicker = () => {
 
   return (
     <div ref={logoRef} className="py-8 md:py-12 bg-white">
-      <div className="container mx-auto">
-        <div className="flex  overflow-hidden [mask-image:linear-gradient(to_right,transparent,black,transparent)]">
+      <div className="">
+        <div className="flex max-w-[80%] mx-auto overflow-hidden [mask-image:linear-gradient(to_right,transparent,black,transparent)]">
           <motion.div
-            className="flex gap-20 flex-none pr-20"
+            className="flex gap-14 flex-none pr-14"
             animate={{
               x: "-50%",
             }}
             transition={{
-              duration: 20,
+              duration: 5,
               repeat: Infinity,
               ease: "linear",
               repeatType: "loop",
