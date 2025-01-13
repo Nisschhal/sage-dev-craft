@@ -1,3 +1,4 @@
+"use client"
 import QuantumLogo from "@/assets/logo-quantum.png"
 import CelestialLogo from "@/assets/logo-celestial.png"
 import AcmeLogo from "@/assets/logo-acme.png"
@@ -5,12 +6,37 @@ import EchoLogo from "@/assets/logo-echo.png"
 import PulseLogo from "@/assets/logo-pulse.png"
 import ApexLogo from "@/assets/logo-apex.png"
 import Image from "next/image"
+import { useScroll, useTransform, motion } from "framer-motion"
+import { useRef } from "react"
 export const LogoTicker = () => {
+  const logoRef = useRef<HTMLDivElement>(null)
+  // Parallax Effect for logo container---
+  // const { scrollYProgress } = useScroll({
+  //   target: logoRef,
+  //   offset: ["0.1 1", "1 0.1"],
+  // })
+
+  // const x = useTransform(scrollYProgress, [0, 1], [-350, 350])
+
+  // const x = "-50%"
+
   return (
-    <div className="py-8 md:py-12 bg-white">
-      <div className="container">
-        <div className="flex justify-center overflow-hidden [mask-image:linear-gradient(to_right,transparent,black,transparent)]">
-          <div className="flex gap-14 flex-none">
+    <div ref={logoRef} className="py-8 md:py-12 bg-white">
+      <div className="container mx-auto">
+        <div className="flex  overflow-hidden [mask-image:linear-gradient(to_right,transparent,black,transparent)]">
+          <motion.div
+            className="flex gap-20 flex-none pr-20"
+            animate={{
+              x: "-50%",
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "linear",
+              repeatType: "loop",
+            }}
+          >
+            {/* Logo First set 1 */}
             <Image src={AcmeLogo} alt="acme logo" className="logo-ticker-img" />
             <Image
               src={QuantumLogo}
@@ -29,7 +55,26 @@ export const LogoTicker = () => {
               className="logo-ticker-img"
             />
             <Image src={ApexLogo} alt="apex logo" className="logo-ticker-img" />
-          </div>
+            {/* Logo First set 2 */}
+            <Image src={AcmeLogo} alt="acme logo" className="logo-ticker-img" />
+            <Image
+              src={QuantumLogo}
+              alt="quantum logo"
+              className="logo-ticker-img"
+            />
+            <Image src={EchoLogo} alt="echo logo" className="logo-ticker-img" />
+            <Image
+              src={CelestialLogo}
+              alt="celestial logo"
+              className="logo-ticker-img"
+            />
+            <Image
+              src={PulseLogo}
+              alt="pulse logo"
+              className="logo-ticker-img"
+            />
+            <Image src={ApexLogo} alt="apex logo" className="logo-ticker-img" />
+          </motion.div>
         </div>
       </div>
     </div>

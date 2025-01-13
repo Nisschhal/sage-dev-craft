@@ -33,16 +33,10 @@ export const ProductShowcase = () => {
 
   const y = useTransform(scrollYProgress, [0, 1], [150, -150])
 
-  useMotionValueEvent(scrollYProgress, "change", (latestScrollY) =>
-    console.log({ latestScrollY })
-  )
-
-  useMotionValueEvent(y, "change", (latestY) => console.log({ latestY }))
-
   return (
     <section
       ref={productRef}
-      className="border border-black bg-gradient-to-b from-[#fff] to-[#d2dcff] py-24 overflow-x-clip"
+      className="bg-gradient-to-b from-[#fff] to-[#d2dcff] py-24 overflow-x-clip"
     >
       <div className="">
         <div className="section-header">
