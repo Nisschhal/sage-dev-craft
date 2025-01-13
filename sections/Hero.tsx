@@ -1,22 +1,47 @@
+"use client"
 import Cog from "@/assets/cog.png"
 import Cylinder from "@/assets/cylinder.png"
 import Noddle from "@/assets/noodle.png"
-import { CallToAction } from "./CallToAction"
 import { GoArrowRight } from "react-icons/go"
 import Image from "next/image"
+import {
+  motion,
+  useScroll,
+  useMotionValueEvent,
+  useMotionValue,
+  useTransform,
+} from "motion/react"
+import { useRef } from "react"
 
 export const Hero = () => {
+  const heroRef = useRef(null)
+
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start end", "end start"],
+  })
+
+  const y = useTransform(scrollYProgress, [0, 1], [150, -150])
+
+  useMotionValueEvent(scrollYProgress, "change", (latestScrollY) =>
+    console.log({ latestScrollY })
+  )
+  useMotionValueEvent(y, "change", (latestY) => console.log({ latestY }))
+
   return (
-    <section className="p-5 pt-8 pb-20 bg-[radial-gradient(ellipse_200%_100%_at_bottom_left,#183ec2,#eaeefe_100%)] overflow-x-clip">
+    <section
+      ref={heroRef}
+      className="p-5 pt-8 pb-20 md:pb-10 bg-[radial-gradient(ellipse_200%_100%_at_bottom_left,#183ec2,#eaeefe_100%)] overflow-x-clip"
+    >
       <div className="container mx-auto">
-        <div className="md:flex items-center lg:gap-12 ">
+        <div className="md:flex items-center">
           {/* Text  */}
           <div className="md:w-[478px]">
             {/* Small Heading */}
             <p className="tag">Your Business, Digitized</p>
 
             {/* Main Heading */}
-            <h1 className="text-5xl md:text-6xl gradient-text mt-6 ">
+            <h1 className="text-5xl md:text-6xl  gradient-text mt-6 ">
               Unlock Growth with Digital Solutions
             </h1>
 
@@ -41,24 +66,37 @@ export const Hero = () => {
           </div>
           {/* Hero Image */}
           <div className="xl:ml-20 mt-20 md:mt-0 md:h-[648px] md:flex-1 relative">
-            <Image
-              src={Cog}
+            <motion.img
+              src={Cog.src}
               alt="hero image"
-              className="md:absolute  md:h-full md:w-auto md:max-w-none md:-left-6 lg:left-0"
+              className="md:absolute md:h-full md:w-auto md:max-w-none md:-left-6 lg:left-0"
+              animate={{
+                y: [-30, 30],
+              }}
+              transition={{
+                repeat: Infinity,
+                repeatType: "mirror",
+                duration: 3,
+                ease: "easeInOut",
+              }}
             />
-            <Image
-              src={Cylinder}
+            <motion.img
+              src={Cylinder.src}
               alt="cylinder image"
               width={220}
               height={220}
               className="hidden md:block -top-8 -left-32 md:absolute"
+              style={{
+                y,
+              }}
             />
-            <Image
-              src={Noddle}
+            <motion.img
+              src={Noddle.src}
               alt="noddle image"
               width={220}
               height={220}
-              className="hidden lg:block top-[524px] left-[448px] md:absolute rotate-[30deg]"
+              className="hidden lg:block  md:absolute top-[524px] left-[448px] rotate-[30deg]"
+              style={{ y }}
             />
           </div>
         </div>
