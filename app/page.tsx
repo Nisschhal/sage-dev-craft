@@ -1,3 +1,4 @@
+"use client"
 import { CallToAction } from "@/sections/CallToAction"
 import { Footer } from "@/sections/Footer"
 import { Header } from "@/sections/Header"
@@ -6,16 +7,18 @@ import { LogoTicker } from "@/sections/LogoTicker"
 import { Pricing } from "@/sections/Pricing"
 import { ProductShowcase } from "@/sections/ProductShowcase"
 import { Testimonials } from "@/sections/Testimonials"
+import { useState } from "react"
 export default function Home() {
+  const [active, setActive] = useState("home")
   return (
     <>
-      <Header />
-      <Hero />
+      <Header active={active} setActive={setActive} />
+      <Hero setActive={setActive} />
       <LogoTicker />
-      <ProductShowcase />
-      <Pricing />
-      <Testimonials />
-      <CallToAction />
+      <ProductShowcase setActive={setActive} />
+      <Pricing setActive={setActive} />
+      <Testimonials setActive={setActive} />
+      <CallToAction setActive={setActive} />
       <Footer />
     </>
   )

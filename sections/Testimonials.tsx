@@ -10,8 +10,8 @@ import avatar8 from "@/assets/avatar-8.png"
 import avatar9 from "@/assets/avatar-9.png"
 import Image from "next/image"
 import { twMerge } from "tailwind-merge"
-import { motion } from "framer-motion"
-import React from "react"
+import { motion, useInView } from "framer-motion"
+import React, { useEffect, useRef } from "react"
 interface Testimonial {
   text: string
   imageSrc: string
@@ -137,9 +137,21 @@ export const TestimonialColumn = ({
   )
 }
 
-export const Testimonials = () => {
+export const Testimonials = ({
+  setActive,
+}: {
+  setActive: (value: string) => void
+}) => {
+  const testimonialRef = useRef(null)
+
+  const isInView = useInView(testimonialRef)
+
+  useEffect(() => {
+    if (isInView) setActive("testimonials")
+  }, [isInView])
+
   return (
-    <section>
+    <section id="testimonials" ref={testimonialRef}>
       <div className="container mx-auto">
         <div className="section-header">
           <div className="flex justify-center">

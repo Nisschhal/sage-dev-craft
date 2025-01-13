@@ -5,14 +5,23 @@ import pyramidImage from "@/assets/pyramid.png"
 import tubeImage from "@/assets/tube.png"
 import {
   motion,
+  useInView,
   useMotionValueEvent,
   useScroll,
   useTransform,
 } from "framer-motion"
-import { useRef } from "react"
+import { useEffect, useRef } from "react"
 
-export const ProductShowcase = () => {
+export const ProductShowcase = ({
+  setActive,
+}: {
+  setActive: (value: string) => void
+}) => {
   const productRef = useRef(null)
+  const isInView = useInView(productRef)
+  useEffect(() => {
+    if (isInView) setActive("features")
+  }, [isInView])
 
   const { scrollYProgress } = useScroll({
     target: productRef,
@@ -35,6 +44,7 @@ export const ProductShowcase = () => {
 
   return (
     <section
+      id="features"
       ref={productRef}
       className="bg-gradient-to-b from-[#fff] to-[#d2dcff] py-24 overflow-x-clip"
     >

@@ -4,11 +4,16 @@ import Cylinder from "@/assets/cylinder.png"
 import Noddle from "@/assets/noodle.png"
 import { GoArrowRight } from "react-icons/go"
 import Image from "next/image"
-import { motion, useScroll, useTransform } from "motion/react"
-import { useRef } from "react"
+import { motion, useInView, useScroll, useTransform } from "motion/react"
+import { useEffect, useRef } from "react"
 
-export const Hero = () => {
+export const Hero = ({ setActive }: { setActive: (value: string) => void }) => {
   const heroRef = useRef(null)
+
+  const isInView = useInView(heroRef)
+  useEffect(() => {
+    if (isInView) setActive("home")
+  }, [isInView])
 
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -19,6 +24,7 @@ export const Hero = () => {
 
   return (
     <section
+      id="home"
       ref={heroRef}
       className="p-5 pt-8 pb-20 md:pb-10 bg-[radial-gradient(ellipse_200%_100%_at_bottom_left,#183ec2,#eaeefe_100%)] overflow-x-clip"
     >

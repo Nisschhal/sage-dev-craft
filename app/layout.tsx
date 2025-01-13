@@ -17,8 +17,10 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
-      <body className={twMerge("antialiased")}>{children}</body>
+    <html lang="en" className="scroll-smooth">
+      <body className={twMerge(dm_sans.className, "antialiased")}>
+        {children}
+      </body>
     </html>
   )
 }

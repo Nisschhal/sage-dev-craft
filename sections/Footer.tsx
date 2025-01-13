@@ -30,20 +30,21 @@ export const Footer = () => {
         </div>
         {/* Navigation */}
         <nav className="flex flex-col md:flex-row justify-center gap-6 mt-6">
-          <a href="#" className="hover:text-black transition-colors">
-            About
+          <a href="#home" className="hover:text-black transition-colors">
+            Home
           </a>
-          <a href="#" className="hover:text-black transition-colors">
+          <a href="#features" className="hover:text-black transition-colors">
             Features
           </a>
-          <a href="#" className="hover:text-black transition-colors">
-            Customers
-          </a>
-          <a href="#" className="hover:text-black transition-colors">
+
+          <a href="#pricing" className="hover:text-black transition-colors">
             Pricing
           </a>
-          <a href="#" className="hover:text-black transition-colors">
-            Help
+          <a
+            href="#testimonials"
+            className="hover:text-black transition-colors"
+          >
+            Testimonials
           </a>
         </nav>
         {/* Socials */}

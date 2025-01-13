@@ -4,11 +4,22 @@ import { twMerge } from "tailwind-merge"
 import starImage from "@/assets/star.png"
 import sprintImage from "@/assets/spring.png"
 import Image from "next/image"
-import { motion, useScroll, useTransform } from "framer-motion"
-import { useRef } from "react"
+import { motion, useInView, useScroll, useTransform } from "framer-motion"
+import { useEffect, useRef } from "react"
 
-export const CallToAction = () => {
+export const CallToAction = ({
+  setActive,
+}: {
+  setActive: (value: string) => void
+}) => {
   const callRef = useRef<HTMLScriptElement>(null)
+
+  const isInView = useInView(callRef)
+
+  useEffect(() => {
+    if (isInView) setActive("contact")
+  }, [isInView])
+
   const { scrollYProgress } = useScroll({
     target: callRef,
     offset: ["start end", "end start"],
@@ -16,6 +27,7 @@ export const CallToAction = () => {
   const y = useTransform(scrollYProgress, [0, 1], [150, -150])
   return (
     <section
+      id="contact"
       ref={callRef}
       className="bg-gradient-to-b from-[#eaeefe] to-[#183ec2]/20 py-24 md:py-36 overflow-x-clip "
     >

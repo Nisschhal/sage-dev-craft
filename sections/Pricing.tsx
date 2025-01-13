@@ -1,7 +1,8 @@
 "use client"
 import { GoCheckbox } from "react-icons/go"
 import { twMerge } from "tailwind-merge"
-import { motion } from "framer-motion"
+import { motion, useInView } from "framer-motion"
+import { useEffect, useRef } from "react"
 interface PricingPlan {
   title: string
   monthlyPrice: number
@@ -63,9 +64,20 @@ const pricingTiers = [
   },
 ]
 
-export const Pricing = () => {
+export const Pricing = ({
+  setActive,
+}: {
+  setActive: (value: string) => void
+}) => {
+  const pricingRef = useRef(null)
+  const isInView = useInView(pricingRef)
+
+  useEffect(() => {
+    if (isInView) setActive("pricing")
+  }, [isInView])
+
   return (
-    <section className="py-24 ">
+    <section id="pricing" ref={pricingRef} className="py-24 ">
       <div className="container mx-auto">
         <div className="section-header">
           <h2 className="section-title gradient-text">Pricing</h2>

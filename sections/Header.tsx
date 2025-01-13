@@ -3,10 +3,24 @@ import { GoArrowRight } from "react-icons/go"
 import Right from "@/assets/right.svg"
 import Logo from "@/assets/logosaas.png"
 import MenuIcon from "@/assets/menu.svg"
+import { useEffect, useRef } from "react"
+import { useInView } from "framer-motion"
+import { twMerge } from "tailwind-merge"
 
-export const Header = () => {
+export const Header = ({
+  active,
+  setActive,
+}: {
+  active: string
+  setActive: (value: string) => void
+}) => {
+  const headerRef = useRef(null)
+  const isInView = useInView(headerRef)
+  useEffect(() => {
+    if (isInView) setActive("home")
+  }, [isInView])
   return (
-    <header className="sticky top-0 z-20 backdrop-blur-sm">
+    <header ref={headerRef} className="sticky top-0 z-20 backdrop-blur-sm">
       {/* Banner */}
       <div className="flex justify-center items-center py-2 bg-black text-white text-sm gap-3">
         <p className="text-white/70 hidden md:block">
@@ -32,20 +46,51 @@ export const Header = () => {
 
         {/* Navigation */}
         <nav className="hidden md:flex gap-6 text-black/70 items-center">
-          <a href="#" className="hover:text-black transition-colors">
-            About
+          <a
+            href="#home"
+            className={twMerge(
+              "hover:text-black transition-colors",
+              active === "home" && "text-[#010d3e] font-semibold"
+            )}
+          >
+            Home
           </a>
-          <a href="#" className="hover:text-black transition-colors">
+          <a
+            href="#features"
+            className={twMerge(
+              "hover:text-black transition-colors",
+              active === "features" && "text-[#010d3e] font-semibold"
+            )}
+          >
             Features
           </a>
-          <a href="#" className="hover:text-black transition-colors">
-            Customers
+          <a
+            href="#pricing"
+            className={twMerge(
+              "hover:text-black transition-colors",
+              active === "pricing" && "text-[#010d3e] font-semibold"
+            )}
+          >
+            Pricing
           </a>
-          <a href="#" className="hover:text-black transition-colors">
-            Updates
+          <a
+            href="#testimonials"
+            className={twMerge(
+              "hover:text-black transition-colors",
+              active === "testimonials" && "text-[#010d3e] font-semibold"
+            )}
+          >
+            Testimonials
           </a>
-          <a href="#" className="hover:text-black transition-colors">
-            Help
+
+          <a
+            href="#contact"
+            className={twMerge(
+              "hover:text-black transition-colors",
+              active === "contact" && "text-[#010d3e] font-semibold"
+            )}
+          >
+            Contact
           </a>
           <button className="btn btn-primary px-6 py-2">Get for free</button>
         </nav>
